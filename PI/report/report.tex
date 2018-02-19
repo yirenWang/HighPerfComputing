@@ -37,7 +37,7 @@ In order to approximate an integral, we approximate the area under the function 
 The area of one trapezoid at the $i^{th}$ position is $$A(i) = \frac{h}{2}[f(a + ih) + f(a + (i+1)h)]$$. 
 \\
 To approximate $pi$, we'll sum this area from $i=0$ to $i=n$. By writing it out, we can see that we are summing twice $f(a + ih)$ for all $i$ other than $i=0$ and $i=n$. Therefore the total area can be written out as : 
-$$ pi \approx \frac{f(b) - f(a)}{2} + \sum_{i=1}^{n-1}A(i)  $$
+$$ pi \approx \frac{f(b) + f(a)}{2} + \sum_{i=1}^{n-1}A(i)  $$
 
 \section{Processing}
 \smallskip
@@ -48,23 +48,23 @@ The calculation $A(i)$ for all $i$ is independent, meaning that they can be calc
 \newpage
 \section{Post-Processing}
 \subsection{Time}
-The following graph shows how much time was necessary to compute the value of pi given the number of subdivisions used. The blue graph indicates the time taken for 4 processes while the orange graph indicates the time taken for 2 processes. While the total time take is generally proportional to the number of trapezoids, it varies quite wildly. Nonetheless we can see that having more processes to share the workload slightly reduces the average time of computation. 
+The following graph shows how much time was necessary to compute the value of pi given the number of subdivisions used. The blue graph indicates the time taken for 4 processes while the orange graph indicates the time taken for a single process. It seems that the time varies erratically for 4 processors but remains stable for a single process. This may be due to overhead time to send the data with each calculation. 
 \\\\
 \begin{figure}[h]
 \caption{Time take to compute $\pi$ given $n$}
 \centering
-\includegraphics[width=11cm, height=10cm]{time}
+\includegraphics[width=12cm, height=11cm]{pi_time}
 \end{figure}
 
 \newpage
 \subsection{Accuracy}
-As expected, the higher the number of trapezoids used to calculate $\pi$, the better the results are. However, we can see that after $n=100000$, the improvements are no longer significant.  
+As expected, the higher the number of trapezoids used to calculate $\pi$, the better the results are. However, we can see that after $n=1000$, the improvements are no longer significant. As expected, the error follow a $\frac{1}{n^2}$ curve. 
 \\\\
 
 \begin{figure}[h]
 \caption{Accuracy of $\pi$ given $n$}
-\includegraphics[width=8cm, height=8cm]{pi5mil}
-\includegraphics[width=8cm, height=8cm]{pi1mil}
+\centering
+\includegraphics[width=12cm, height=12cm]{pi_percent_error}
 \end{figure}
 
 

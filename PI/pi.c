@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <mpi.h>
 
-double PI = 3.14159265359;
+double PI = 3.14159265358979323846264338327950288419716939937510;
 /* Goal : Calculate pi by calculating the integral from 0 to 1 of f using the trapezoid method */
 
 // calculates f
@@ -13,7 +13,7 @@ double f(double x) {
 
 // calculates the trapezoids and sums them
 double trapezoids(double a, double b, double n) {
-    double total_area = 0.5*( f(b)-f(a) );
+    double total_area = 0.5*( f(b)+f(a) );
     double h = ( b-a )/n; // step
     for (int i = 1; i < n; i++) {
         total_area += f(a + i*h);
@@ -62,9 +62,9 @@ int main(int argc, char *argv[]){
         // printf(" --- Pi Estimate: %f --- \n", pi);
         // printf(" --- Error: %f --- \n", PI - pi);
         // printf(" --- Percentage Error: %f --- \n", 100*(PI - pi)/PI);
-        printf("%f++", endTime - startTime);
-        printf("%f++", pi);
-        printf("%f\n", PI - pi);
+        printf("%e++", endTime - startTime);
+        printf("%e++", pi);
+        printf("%e\n", (PI - pi)/PI);
 
     } else {
         // printf("process %d is computing ...\n", rank);
